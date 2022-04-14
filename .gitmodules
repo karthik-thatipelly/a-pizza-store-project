@@ -1,0 +1,3 @@
+[submodule "a-pizza-store-client"]
+	path = a-pizza-store-client
+	url = https://github.com/karthik-thatipelly/a-pizza-store-client.git
