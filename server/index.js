@@ -29,3 +29,32 @@ sequelize
   });
 
   module.exports = sequelize;
+
+
+  
+//Tables
+
+
+const User = require("./models/UsersModel");
+const Ingredient = require("./models/IngredientsModel");
+const Cart = require("./models/CartModel");
+const Order = require("./models/OrdersModel");
+
+User.hasMany(Order);
+//User.hasOne(Cart);
+//User.hasMany(Ingredient);
+//Cart.hasMany(Ingredient);
+//Cart.hasOne(Order);
+//Order.hasMany(Ingredient);
+
+sequelize 
+  .sync({force:true})
+  .then((result) => {
+      console.log(result);
+  })
+  .catch((err) => {
+      console.log(err)
+  })
+
+  
+  
