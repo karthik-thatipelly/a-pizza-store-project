@@ -40,18 +40,18 @@ sequelize
 
 const User = require("./models/UsersModel");
 //const Ingredient = require("./models/IngredientsModel");
-//const Cart = require("./models/CartModel");
+const Cart = require("./models/CartModel");
 const Order = require("./models/OrdersModel");
 
 User.hasMany(Order);
-//User.hasOne(Cart);
+User.hasOne(Cart);
 //User.hasMany(Ingredient);
 //Cart.hasMany(Ingredient);
 //Cart.hasOne(Order);
 //Order.hasMany(Ingredient);
 
 sequelize 
-  .sync({force:false})
+  .sync({force:true})
   .then((result) => {
       console.log(result);
   })
@@ -82,3 +82,26 @@ sequelize
     }
   })
    
+
+  //form submit
+
+  app.post('/',(req,res) => {
+    try{
+    Cart.create({size:req.body.size, crust: req.body.crust,cheese:req.body.cheese, vegtoppings: req.body.vegtoppings, nonvegtoppings: req.body.nonvegtoppings})
+    } catch(err) {
+      console.log("something went wrong")
+    }
+  })
+
+  //order summary
+
+  app.get('/checkout', (req,res) => {
+    try{
+      Cart.findAll({
+        where: {id:1}
+      })
+      .then(result => {res.send(result)})
+    } catch(err) {
+      res.send({err:err})
+    }
+  })

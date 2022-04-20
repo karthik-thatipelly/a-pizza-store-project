@@ -6,26 +6,32 @@ const Cart = sequelize.define("cart", {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull:false,
-    },
-    crust: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        primaryKey:true
     },
     size: {
         type: Sequelize.STRING,
         allowNull: false, 
     },
-    vegtoppings: {
-        type: Sequelize.INTEGER,
-        allowNull : false,
-    },
-    nonvegToppings: {
-        type: Sequelize.INTEGER,
+    crust: {
+        type: Sequelize.STRING,
         allowNull: false,
+    },
+    cheese: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
+    
+    vegtoppings: {
+        type: Sequelize.STRING,
+        allowNull : true,
+    },
+    nonvegtoppings: {
+        type: Sequelize.STRING,
+        allowNull: true,
     },
     price: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     }
 });
 
